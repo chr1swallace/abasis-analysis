@@ -12,7 +12,8 @@ library(parallel)
 ## RESULTS.FILE <- '~/share/as_basis/GWAS/RESULTS/25_01_19_summary_results.RDS'
 ## name of each element below
 ti <- c("+vit (latest)","ten","+psa","vit+t2d","ten noshrink")
-RESULTS.FILE <- c("~/share/as_basis/GWAS/RESULTS/17_07_19_0619_summary_results.RDS",
+RESULTS.FILE <- c(#"~/share/as_basis/GWAS/RESULTS/23_07_19_0619_summary_results.RDS", # adds eqtlgen - takes longer to load but no other difference
+                  "~/share/as_basis/GWAS/RESULTS/17_07_19_0619_summary_results.RDS",
                   "~/share/as_basis/GWAS/RESULTS/03_07_19_0619_summary_results.RDS",
                   "~/share/as_basis/GWAS/RESULTS/24_06_19_0619_summary_results.RDS",
                   "~/share/as_basis/GWAS/RESULTS/09_04_19_summary_results.RDS",
@@ -92,24 +93,28 @@ mangle.proj <- function(tmp,cats.keep) {
 
 reader <- function(what=c("weight","noweight"),
                    J=1,
-                   cats.keep=c("ferreira_asthma",
-                               "tian_infectious_disease",
-                               "bowes_jia_2019", "bb_cancer",
-                               "bb_disease", "bb_medications",
-                               "brown_as",
-                               "astle_blood",
-                               "rhodes_pah",
-                               "taylor_mtx",
-                               "kiryluk_iga_neph",
-                               "psyc_consortium",
-                               "kuiper_bs",
-                               "li_as",
-                               "cousminer_lada",
-                               "geneatlas_srd",
-                               "myogen",
-                               "estrada_NMO",
-                               "lyons_egpa",
-                               "bowes_psa")) {
+                   cats.keep=c(
+"astle_blood",
+"bb_cancer",
+"bb_disease",
+"bb_medications",
+"bowes_jia_2019",
+"bowes_psa",
+"brown_as",
+"cousminer_lada",
+"estrada_NMO",
+"ferreira_asthma",
+"geneatlas_srd",
+"kiryluk_iga_neph",
+"kuiper_bs",
+"li_as",
+"lyons_egpa",
+"myogen",
+"psyc_consortium",
+"rhodes_pah",
+"taylor_mtx",
+"tian_infectious_disease"
+)) {
     what <- match.arg(what)
     if(what=="weight") {
         tmp <- readRDS(RESULTS.FILE[[J]])
